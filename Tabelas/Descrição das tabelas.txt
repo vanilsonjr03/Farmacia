@@ -1,0 +1,80 @@
+Tabela: tipo_pessoa
+
+Descricao: Esta tabela contém dois unicos valores sendo eles pessoa fisica ou juridica.
+
+Atributos: id_tipopessoa PK,descricao.
+
+----------------------------
+
+Tabela: cargo
+
+Descricao:  Esta tabela contén informações referentes aos cargos que a farmacia possui.
+O código de numero 0 será especifico para pessoas que não possuem cargo, ou seja, clientes, logo não possuem salario.
+
+Atributos: id_cargo PK,descricao,salario.
+
+----------------------------
+
+Tabela: pessoa
+
+Descricao: Contém dados referentes a pessoas, sendo elas funcionario, clientes, pessoas fisicas e juridicas.
+
+Atributos: id_pessoa PK, id_tipopessoa FK, id_cargo FK, nome, cpf_cnpj.
+----------------------------
+
+Tabela: telefone 
+
+Descricao: Esta tabela contém todos os telefones do sistema referente as pessoas.
+
+Atributos: id_telefone PK, id_pessoa FK, numero.
+
+----------------------------
+
+Tabela: cidade
+
+Descricao: Contém todas as cidades que possui uma loja(farmacia) que utiliza o sistema.
+
+Atributos: id_cidade PK, nome_cidade.
+----------------------------
+
+Tabela: bairro
+
+Descricao: contém todos os bairros que está possui uma loja/farmacia.
+ 
+Atributos: id_bairro PK, nome_bairro.
+----------------------------
+
+Tabela: endereco
+
+Descricao: Esta tabela possui todos os endereços das pessoas cadastradas no sistema.
+
+Atributos: id_endereco PK, id_pessoa FK, id_cidade FK, id_bairro FK, logradouro, numero_endereco.
+----------------------------
+
+Tabela: tipo_loja
+
+Descricao: Esta tabela contem os tipo de lojas existentes, podendo ser matriz ou filial.
+
+Atributos: id_tipoloja PK, descricao.
+----------------------------
+
+Tabela: loja
+
+Descricao: Contém todos os dados referentes a loja, nome,cpf, gerente, etc. O gerente será uma chave estrangeira da tabela de pessoa, logo para ser gerente ele precisará estar cadastrado no sistema.
+
+Atributos: id_loja PK, id_tipoloja FK, gerente FK, nome_loja, cnpj.
+----------------------------
+
+Tabela: tipo_produto
+
+Descricao: Conterá a descrição do tipo do produto, podendo ser, Remédio, perfume, coisas deste tipo.
+
+Atributos: id_tipoproduto PK, descricao.
+----------------------------
+
+Tabela: produto
+
+Descricao: Nesta tabela você encontra informações do produto como preço, quantidade em estoque.
+
+Atributos: id_produto PK, id_tipoproduto FK, nome_produto, preco, quantidade. 
+----------------------------

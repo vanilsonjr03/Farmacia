@@ -1,0 +1,89 @@
+create table tipo_pessoa(
+	id_tipopessoa int not null identity(1,1),
+	descricao varchar(50),
+	primary key (id_tipopessoa)
+);
+
+create table cargo(
+	id_cargo int not null identity(1,1),
+	descricao varchar(50) not null,
+	salario float,
+	primary key(id_cargo)
+);
+
+create table pessoa(
+	id_pessoa int not null identity(1,1),
+	id_tipopessoa int not null,
+	id_cargo int not null,
+	nome varchar(50) not null,
+	cpf_cnpj varchar(18) not null,
+	primary key(id_pessoa),
+	foreign key(id_tipopessoa) references tipo_pessoa(id_tipopessoa),
+	foreign key(id_cargo) references cargo(id_cargo)
+);
+
+create table telefone(
+	id_telefone int not null identity(1,1),
+	id_pessoa int not null,
+	numero varchar(15) not null,
+	primary key(id_telefone),
+	foreign key(id_pessoa) references pessoa(id_pessoa)
+);
+
+create table cidade(
+	id_cidade int not null identity(1,1),
+	nome_cidade varchar(50) not null,
+	primary key(id_cidade)
+);
+
+create table bairro(
+	id_bairro int not null identity(1,1),
+	nome_bairro varchar(50),
+	primary key(id_bairro)
+);
+
+create table endereco(
+	id_endereco int not null identity(1,1),
+	id_pessoa int not null,
+	id_cidade int not null,
+	id_bairro int not null,
+	logradouro varchar(50) not null,
+	numero_endereco int not null,
+	primary key(id_endereco),
+	foreign key(id_pessoa) references pessoa(id_pessoa),
+	foreign key(id_cidade) references cidade(id_cidade),
+	foreign key(id_bairro) references bairro(id_bairro)
+);
+
+create table tipo_loja(
+	id_tipoloja int not null identity(1,1),
+	descricao varchar(50) not null
+	primary key(id_tipoloja)
+);
+
+create table loja(
+	id_loja int not null identity(1,1),
+	id_tipoloja int not null,
+	nome_loja varchar(50) not null,
+	cnpj varchar(18) not null,
+	gerente int not null,
+	primary key(id_loja),
+	foreign key(id_tipoloja) references tipo_loja(id_tipoloja),
+	foreign key(gerente) references pessoa(id_pessoa)
+);
+
+create table tipo_produto(
+	id_tipoproduto int not null identity(1,1),
+	descricao varchar(50) not null,
+	primary key(id_tipoproduto)
+);
+
+create table produto(
+	id_produto int not null identity(1,1),
+	id_tipoproduto int not null,
+	nome_produto varchar(50) not null,
+	preco float not null,
+	quantidade int not null,
+	primary key(id_produto),
+	foreign key(id_tipoproduto) references tipo_produto(id_tipoproduto)
+);
